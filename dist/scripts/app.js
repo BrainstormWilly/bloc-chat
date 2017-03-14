@@ -5,15 +5,15 @@
         enabled: true,
         requireBase: false
       });
-    // $stateProvider
-    //   .state('landing',{
-    //     url: '/',
-    //     controller: 'LandingCtrl as landing',
-    //     templateUrl: '/templates/landing.html'
-    //   });
+    $stateProvider
+      .state('home',{
+        url: '/',
+        controller: 'HomeCtrl as home',
+        templateUrl: '/templates/home.html'
+      });
   }
   angular
-    .module('blocJams', ['ui.router', 'firebase'])
+    .module('blocChat', ['ui.router', 'firebase'])
     .config(config);
 
 })();
