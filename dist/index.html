@@ -14,10 +14,15 @@
   <div ui-view="nav"></div>
   <div ui-view="main"></div>
   <div class="modal-parent"></div>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-  <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+
+  <script src="//www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+  <script src="//cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
   <script>
     // Initialize Firebase
     var config = {
@@ -29,7 +34,7 @@
     };
     firebase.initializeApp(config);
   </script>
-  <script src="/scripts/vendor/ui-bootstrap-tpls.js"></script>
+
   <script src="/scripts/app.js"></script>
   <script src="/scripts/controllers/NavCtrl.js"></script>
   <script src="/scripts/controllers/NewRoomModalCtrl.js"></script>

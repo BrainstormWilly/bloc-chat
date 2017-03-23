@@ -1,15 +1,21 @@
 (function() {
 
   function Room($firebaseArray) {
+
     var ref = firebase.database().ref().child("rooms");
-    var service = {};
-    service.all = $firebaseArray(ref);
-    service.addRoom = function(room_name){
-      var list = $firebaseArray(ref);
+    var list = $firebaseArray(ref);
+
+
+    function addRoom(room_name) {
+      console.log('adding', room_name)
       list.$add(room_name);
+      debugger;
     };
 
-    return service;
+    return {
+      all: list,
+      addRoom: addRoom
+    };
   }
 
   angular
