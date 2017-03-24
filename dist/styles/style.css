@@ -1,29 +1,58 @@
 
 body{
+  box-sizing: border-box;
   font-family: 'Roboto Slab', sans-serif;
   margin: 0;
-}
-
-#rooms-panel{
-  background-color: #ccc;
   color: #555;
-  position: fixed;
+}
+
+.wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.panel{
   padding: 1rem;
-  min-width: 10rem;
-  width: 20%;
-  height: 100%
 }
 
-#rooms-panel h1{
-  margin-bottom: 2rem;
-}
-
-#rooms-panel ul{
+.panel ul{
   margin-left: 0;
   padding-left: 0;
 }
 
-#rooms-panel li{
+#main{
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  left: 20rem;
+  right: 0;
+}
+
+#main .panel li{
+  background-color: #eee;
+  border: 0px solid #555;
+  border-radius: 1rem;
+  list-style-type: none;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 80%;
+}
+
+#main .panel li .right-label{
+  float: right;
+  font-size: .7rem;
+}
+
+#nav{
+  position: absolute;
+  background-color: #ccc;
+  top: 0;
+  bottom: 0;
+  width: 20rem;
+}
+
+#nav .panel li{
   padding-left: .5rem;
   padding-top: .7rem;
   padding-bottom: .7rem;
@@ -32,16 +61,17 @@ body{
   border-top-width: 1px;
 }
 
-#rooms-panel li:last-child{
+#nav .panel li:last-child{
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
-#rooms-panel li:hover{
+#nav .panel li:hover{
+  cursor: pointer;
   background-color: #ddd;
 }
 
-#rooms-panel button{
+#nav .panel button{
   width: 100%;
 }
 
