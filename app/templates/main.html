@@ -1,6 +1,6 @@
 <div class="panel">
 
-  <h2>{{main.message.title}}</h2>
+  <h2>{{main.message.title}}<span class="username">{{main.message.user}}</span></h2>
   <ul>
     <li ng-repeat="message in main.message.all">{{message.content}}<span class="right-label">{{message.sentAt}}</span></li>
   </ul>

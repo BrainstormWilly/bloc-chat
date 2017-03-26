@@ -1,4 +1,31 @@
 (function(){
+
+  function blocChatCookies($document, $cookies, $uibModal, Message){
+    var currentUser = $cookies.get('blockChatCurrentUser');
+    if( !currentUser || currentUser==='' ){
+      var parentElem = angular.element($document[0].querySelector('body .modal-parent'));
+      var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: '/templates/username-modal.html',
+        backdropClass: "modal-backdrop",
+        backdrop: 'static',
+        windowClass: "modal-panel",
+        controller: 'UsernameModalCtrl',
+        controllerAs: 'modal',
+        appendTo: parentElem
+      });
+
+      modalInstance.result.then(function (username) {
+        $cookies.put('blockChatCurrentUser', username);
+        Message.setUser(username);
+      });
+    }else{
+      Message.setUser(currentUser);
+    }
+  }
+
   function config($locationProvider, $stateProvider){
     $locationProvider
       .html5Mode({
@@ -20,8 +47,10 @@
         }
       });
   }
+
   angular
-    .module('blocChat', ['ui.router', 'ui.bootstrap', 'firebase'])
-    .config(config);
+    .module('blocChat', ['ngCookies', 'ui.router', 'ui.bootstrap', 'firebase'])
+    .config(config)
+    .run(['$document', '$cookies', '$uibModal', 'Message', blocChatCookies]);
 
 })();
