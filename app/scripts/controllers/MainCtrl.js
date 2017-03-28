@@ -1,14 +1,26 @@
 (function(){
 
-  function MainCtrl($document, $uibModal, Room, Message){
+  function MainCtrl($rootScope, $state, User, Room){
     var $ctrl = this;
 
-    $ctrl.currentRoomId = 2;
+    $ctrl.currentUser = User.getCurrentUser();
 
+    init();
+
+    $rootScope.$on('$stateChangeSuccess', init);
+
+    function init() {
+      $ctrl.currentRoomId = $state.params.id;
+      $ctrl.currentRoom = Room.getCurrentRoom();
+
+      if (!$ctrl.currentRoom) {
+        $ctrl.currentRoom = Room.setCurrentRoom($ctrl.currentRoomId);
+      }
+    }
   }
 
   angular
     .module('blocChat')
-    .controller('MainCtrl', ['$document', '$uibModal', 'Room', 'Message', MainCtrl]);
+    .controller('MainCtrl', ['$rootScope', '$state', 'User', 'Room', MainCtrl]);
 
 })();

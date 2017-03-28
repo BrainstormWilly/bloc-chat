@@ -7,17 +7,15 @@
       controller: messageListCtrl
     }
 
-    function messageListCtrl(Message) {
+    function messageListCtrl(Message, $state) {
       var $ctrl = this;
 
-      $ctrl.$onChange = onChange;
-      $ctrl.$onInit = onChange;
+      $ctrl.$onChanges = onChanges;
 
-      function onChange() {
-        console.log($ctrl.roomId)
+      function onChanges() {
+        console.log('Changing Room to: ' + $ctrl.roomId);
         $ctrl.messages = Message.getByRoomId({ $id: $ctrl.roomId });
       }
-
     }
 
     angular
