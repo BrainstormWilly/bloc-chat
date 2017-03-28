@@ -8,9 +8,10 @@
     service.user = "";
     service.title = "All Messages";
     service.all = $firebaseArray(ref);
+
     service.getByRoomId = function(room) {
-      this.all = $firebaseArray(ref.orderByChild('roomID').equalTo(room.$id));
-      this.title = room.$value;
+      $firebaseArray(ref.orderByChild('roomID').equalTo(room.$id));
+      return this.all;
     };
     service.setUser = function(user){
       this.user = user;

@@ -1,12 +1,14 @@
 (function(){
 
-  function MainCtrl(Message){
+  function MainCtrl($document, $uibModal, Room, Message){
     var $ctrl = this;
-    $ctrl.message = Message;
+
+    $ctrl.currentRoomId = 2;
+
   }
 
   angular
     .module('blocChat')
-    .controller('MainCtrl', ['Message', MainCtrl]);
+    .controller('MainCtrl', ['$document', '$uibModal', 'Room', 'Message', MainCtrl]);
 
 })();
