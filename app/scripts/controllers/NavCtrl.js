@@ -27,6 +27,7 @@
     }
 
     $ctrl.selectRoom = function(room){
+      
       Room.setCurrentRoom(room.$id);
       $state.go('home.room', {id: room.$id});
     };
