@@ -1,6 +1,6 @@
 (function(){
 
-  function blocChatCookies($document, $cookies, $uibModal, User){
+  function blocChatCookies($document, $cookies, $uibModal, $state, User, Room){
     var currentUser = $cookies.get('blockChatCurrentUser');
     if( !currentUser || currentUser === '' ) {
       var parentElem = angular.element($document[0].querySelector('body .modal-parent'));
@@ -44,17 +44,21 @@
           'main': {
             controller: "MainCtrl as main",
             templateUrl: "/templates/main.html"
+          },
+          'footer': {
+            controller: "FooterCtrl as footer",
+            templateUrl: "/templates/footer.html"
           }
         }
       })
       .state('home.room', {
         url: 'room/:id'
-      })
+      });
   }
 
   angular
-    .module('blocChat', ['ngCookies', 'ui.router', 'ui.bootstrap', 'firebase'])
+    .module('blocChat', ['ngCookies', 'ui.router', 'ui.bootstrap', 'firebase', 'angularMoment'])
     .config(config)
-    .run(['$document', '$cookies', '$uibModal', 'User', blocChatCookies]);
+    .run(['$document', '$cookies', '$uibModal', '$state', 'User', 'Room', blocChatCookies]);
 
 })();

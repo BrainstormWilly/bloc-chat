@@ -1,19 +1,18 @@
 (function() {
 
   function User($rootScope, $firebaseArray) {
-    var service = {};
 
+    var service = {};
     var currentUser = null;
+    var getCurrentUser = function () {
+      return currentUser;
+    };
+    var setCurrentUser = function (user) {
+      currentUser = user;
+    };
+
     service.getCurrentUser = getCurrentUser;
     service.setCurrentUser = setCurrentUser;
-
-    function getCurrentUser() {
-      return currentUser;
-    }
-
-    function setCurrentUser(user) {
-      currentUser = user;
-    }
 
     return service;
   }

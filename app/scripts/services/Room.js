@@ -1,31 +1,34 @@
 (function() {
 
-  function Room($rootScope, $firebaseArray, $firebaseObject) {
-    var service = {};
+  function Room($rootScope, $firebaseArray, $firebaseObject, $state) {
 
+    var service = {};
     var ref = firebase.database().ref().child("rooms");
     var currentRoom = null;
-
-    service.all = $firebaseArray(ref);
-
-
-    service.addRoom = function(room_name) {
-      this.all.$add(room_name);
+    var addRoom = function(room_name) {
+      service.all.$add(room_name);
     };
-
-    service.getCurrentRoom = function() {
+    var getCurrentRoom = function() {
       return currentRoom;
-    }
-
-    service.setCurrentRoom = function(roomId) {
+    };
+    var setCurrentRoom = function(roomId) {
       currentRoom = $firebaseObject(ref.child(roomId));
       return currentRoom;
-    }
+    };
+
+    service.all = $firebaseArray(ref);
+    service.addRoom = addRoom;
+    service.getCurrentRoom = getCurrentRoom;
+    service.setCurrentRoom = setCurrentRoom;
+
+    service.all.$loaded().then(function(data){
+      $state.go('home.room', {id: data.$keyAt(0)});
+    });
 
     return service;
   }
 
   angular
     .module('blocChat')
-    .factory('Room', ['$rootScope', '$firebaseArray', '$firebaseObject', Room]);
+    .factory('Room', ['$rootScope', '$firebaseArray', '$firebaseObject', '$state', Room]);
 })();

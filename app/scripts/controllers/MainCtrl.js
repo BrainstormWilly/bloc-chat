@@ -5,12 +5,12 @@
 
     $ctrl.currentUser = User.getCurrentUser();
 
-    init();
+    // init();
 
     $rootScope.$on('$stateChangeSuccess', init);
 
     function init() {
-      $ctrl.currentRoomId = $state.params.id || "room1";
+      $ctrl.currentRoomId = $state.params.id;
       $ctrl.currentRoom = Room.getCurrentRoom();
 
       if (!$ctrl.currentRoom) {
