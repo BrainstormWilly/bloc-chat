@@ -57,7 +57,7 @@
   }
 
   angular
-    .module('blocChat', ['ngCookies', 'ui.router', 'ui.bootstrap', 'firebase', 'angularMoment'])
+    .module('blocChat', ['ngCookies', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'firebase', 'angularMoment'])
     .config(config)
     .run(['$document', '$cookies', '$uibModal', '$state', 'User', 'Room', blocChatCookies]);
 

@@ -1,6 +1,8 @@
 <div class="panel">
 
   <h2>{{main.currentRoom.$value}}<span class="username">{{main.currentUser}}</span></h2>
-
-  <message-list ng-if="main.currentRoomId" room-id="main.currentRoomId"><message-list>
+  <hr/>
+  <div>
+    <message-list ng-if="main.currentRoomId" room-id="main.currentRoomId"><message-list>
+    </div>
 </div>

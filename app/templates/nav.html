@@ -1,8 +1,10 @@
 
 <div class="panel">
-  <h1>Bloc Chat</h1>
-  <ul>
-    <li ng-repeat="room in nav.rooms" id="{{room.$id}}" ng-click="nav.selectRoom(room)">{{room.$value}}</li>
-  </ul>
-  <button type="button" class="panel-button" ng-click="nav.initAddRoom()">Add Room</button>
+  <h1>Bloc Chat<a class="fa fa-reorder" style="float: right" ng-click="nav.navOff = !nav.navOff"></a></h1>
+  <div uib-collapse="nav.navOff">
+    <ul>
+      <li ng-repeat="room in nav.rooms" id="{{room.$id}}" ng-click="nav.selectRoom(room)">{{room.$value}}</li>
+    </ul>
+    <button type="button" class="panel-button" ng-click="nav.initAddRoom()">Add Room</button>
+  </div>
 </div>

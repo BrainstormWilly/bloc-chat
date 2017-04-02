@@ -2,9 +2,8 @@
 
   function NavCtrl($document, $uibModal, $state, Room, User){
     var $ctrl = this;
-    $ctrl.rooms = Room.all;
 
-    $ctrl.initAddRoom = function(){
+    var initAddRoom = function(){
       var parentElem = angular.element($document[0].querySelector('body .modal-parent'));
 
       var modalInstance = $uibModal.open({
@@ -24,13 +23,20 @@
       }, function () {
         console.log('dismissed');
       });
-    }
+    };
 
-    $ctrl.selectRoom = function(room){
-      
+    var selectRoom = function(room){
       Room.setCurrentRoom(room.$id);
       $state.go('home.room', {id: room.$id});
+      $ctrl.navOff = true;
     };
+
+
+    $ctrl.rooms = Room.all;
+    $ctrl.navOff = true;
+    $ctrl.initAddRoom = initAddRoom;
+    $ctrl.selectRoom = selectRoom;
+
   }
 
   angular
