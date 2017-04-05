@@ -9,7 +9,10 @@
     };
     var setCurrentUser = function (user) {
       currentUser = user;
+
+      $rootScope.$broadcast('user.set');
     };
+
 
     service.getCurrentUser = getCurrentUser;
     service.setCurrentUser = setCurrentUser;

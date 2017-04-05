@@ -3,13 +3,19 @@
   function MainCtrl($rootScope, $state, User, Room){
     var $ctrl = this;
 
-    $ctrl.currentUser = User.getCurrentUser();
+
 
     // init();
 
     $rootScope.$on('$stateChangeSuccess', init);
+    $rootScope.$on("user.set", setUser);
+
+    function setUser(){
+      $ctrl.currentUser = User.getCurrentUser();
+    }
 
     function init() {
+      $ctrl.currentUser = User.getCurrentUser();
       $ctrl.currentRoomId = $state.params.id;
       $ctrl.currentRoom = Room.getCurrentRoom();
 

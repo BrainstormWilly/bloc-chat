@@ -1,6 +1,6 @@
 (function(){
 
-  function blocChatCookies($document, $cookies, $uibModal, $state, User, Room){
+  function run($document, $cookies, $uibModal, $state, User, Room){
     var currentUser = $cookies.get('blockChatCurrentUser');
     if( !currentUser || currentUser === '' ) {
       var parentElem = angular.element($document[0].querySelector('body .modal-parent'));
@@ -59,6 +59,6 @@
   angular
     .module('blocChat', ['ngCookies', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'firebase', 'angularMoment'])
     .config(config)
-    .run(['$document', '$cookies', '$uibModal', '$state', 'User', 'Room', blocChatCookies]);
+    .run(['$document', '$cookies', '$uibModal', '$state', 'User', 'Room', run]);
 
 })();
