@@ -1,5 +1,5 @@
 <ul>
-  <li ng-repeat="message in $ctrl.messages">
+  <li ng-repeat="message in $ctrl.messages | orderBy: '-sentAt'">
     <span class="right-label" am-time-ago="message.sentAt"></span>
     {{message.content}}<br/>
     <small>— {{message.username}}</small>

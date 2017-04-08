@@ -2,9 +2,14 @@
 <div class="panel">
   <h1>Bloc Chat<a class="fa fa-reorder" style="float: right" ng-click="nav.navOff = !nav.navOff"></a></h1>
   <div uib-collapse="nav.navOff">
+
+    <h3>Chat rooms<a href class="fa fa-plus add-room" style="float: right" ng-click="nav.initAddRoom()"></a></h3>
     <ul>
-      <li ng-repeat="room in nav.rooms" id="{{room.$id}}" ng-click="nav.selectRoom(room)">{{room.$value}}</li>
+      <li class="room" ng-repeat="room in nav.rooms" id="{{room.$id}}" ng-click="nav.selectRoom(room)">{{room.$value}}<span class="fa fa-caret-right" style="float: right"></span></li>
     </ul>
-    <button type="button" class="panel-button" ng-click="nav.initAddRoom()">Add Room</button>
+    <h3>Online Users</h3>
+    <ul>
+      <li ng-if="user.online" ng-repeat="user in nav.users">{{user.name}} - {{user.room}}</li>
+    </ul>
   </div>
 </div>

@@ -61,6 +61,11 @@ body{
   color: #aaa;
 }
 
+#main a{
+  color: inherit;
+  text-decoration: none;
+}
+
 #nav{
   position: fixed;
   background-color: #555;
@@ -72,6 +77,7 @@ body{
 
 #nav .panel li{
   padding-left: .5rem;
+  padding-right: .5rem;
   padding-top: .7rem;
   padding-bottom: .7rem;
   list-style-type: none;
@@ -83,12 +89,19 @@ body{
   display: none;
 }
 
+#nav h3 a.add-room{
+  color: inherit;
+  text-decoration: none;
+  padding-top: .5rem;
+  padding-right: .3rem;
+}
+
 #nav .panel li:last-child{
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
-#nav .panel li:hover{
+#nav .panel li.room:hover{
   cursor: pointer;
   background-color: #777;
 }
@@ -163,7 +176,19 @@ body{
   padding: 10px;
   width: 100%;
   margin-left: -10px;
+  margin-bottom: .5rem;
+}
 
+.panel-input::-webkit-input-placeholder{
+  color: #bbb;
+}
+
+.panel-input::-moz-input-placeholder{
+  color: #bbb;
+}
+
+.panel-input::-ms-input-placeholder{
+  color: #bbb;
 }
 
 .panel-input:focus{
@@ -180,6 +205,7 @@ body{
   border-style: solid;
   border-width: 1px;
   border-radius: .3rem;
+  margin-right: .3rem;
 }
 
 .panel-button:focus{

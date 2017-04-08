@@ -20,14 +20,23 @@ body{
   transition: height 0.3s;
 }
 
+#nav h3 a.add-room{
+  color: inherit;
+  text-decoration: none;
+  padding-top: .5rem;
+  padding-right: .3rem;
+  outline: none;
+}
+
 #nav .panel li{
   padding-left: .5rem;
+  padding-right: .5rem;
   padding-top: .7rem;
   padding-bottom: .7rem;
   list-style-type: none;
   border-top-style: solid;
   border-top-width: 1px;
-  text-align: center;
+  text-align: left;
 }
 
 #nav .panel li:last-child{

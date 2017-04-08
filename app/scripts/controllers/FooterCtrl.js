@@ -4,7 +4,7 @@
     var $ctrl = this;
     var sendMessage = function(){
       // console.log($ctrl.message, Room.getCurrentRoom().$id, User.getCurrentUser());
-      Message.send($ctrl.message, Room.getCurrentRoom().$id, User.getCurrentUser());
+      Message.send($ctrl.message, Room.getCurrentRoom().$id, User.getCurrentUser().displayName);
       $ctrl.message = '';
       // $state.go('home.room', {id: Room.getCurrentRoom().$id});
     };

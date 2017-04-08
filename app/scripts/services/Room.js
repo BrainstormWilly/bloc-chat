@@ -9,21 +9,26 @@
       service.all.$add(room_name);
     };
     var getCurrentRoom = function() {
+      if( !currentRoom ){
+        currentRoom = service.all[0];
+      }
       return currentRoom;
     };
     var setCurrentRoom = function(roomId) {
       currentRoom = $firebaseObject(ref.child(roomId));
-      return currentRoom;
+      $rootScope.$broadcast('room.set');
+    };
+    var getRooms = function(){
+      service.all = $firebaseArray(ref);
+      return service.all.$loaded();
     };
 
-    service.all = $firebaseArray(ref);
+    service.getRooms = getRooms;
     service.addRoom = addRoom;
     service.getCurrentRoom = getCurrentRoom;
     service.setCurrentRoom = setCurrentRoom;
 
-    service.all.$loaded().then(function(data){
-      $state.go('home.room', {id: data.$keyAt(0)});
-    });
+    // $rootScope.$on('$stateChangeSuccess', setCurrentRoom($state.params.id));
 
     return service;
   }

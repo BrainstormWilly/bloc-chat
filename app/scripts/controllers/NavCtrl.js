@@ -27,11 +27,12 @@
 
     var selectRoom = function(room){
       Room.setCurrentRoom(room.$id);
+      User.changeUserRoom( room.$value );
       $state.go('home.room', {id: room.$id});
       $ctrl.navOff = true;
     };
 
-
+    $ctrl.users = User.all;
     $ctrl.rooms = Room.all;
     $ctrl.navOff = true;
     $ctrl.initAddRoom = initAddRoom;
