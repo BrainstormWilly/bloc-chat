@@ -8,12 +8,16 @@
     $stateProvider
       .state('home',{
         url: '/',
-        controller: 'HomeCtrl as home',
-        templateUrl: '/templates/home.html'
+        views: {
+          'nav': {
+            controller: 'NavCtrl as nav',
+            templateUrl: '/templates/nav.html'
+          }
+        }
       });
   }
   angular
-    .module('blocChat', ['ui.router', 'firebase'])
+    .module('blocChat', ['ui.router', 'ui.bootstrap', 'firebase'])
     .config(config);
 
 })();
