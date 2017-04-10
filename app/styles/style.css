@@ -1,3 +1,6 @@
+/** {
+  border: 1px solid black
+}*/
 
 body{
   box-sizing: border-box;
@@ -27,10 +30,7 @@ body{
   top: 0;
   left: 20rem;
   right: 0;
-}
-
-#main .panel{
-  max-width: 60rem;
+  bottom: 0;
 }
 
 #main .panel .username{
@@ -56,9 +56,14 @@ body{
   font-size: .7rem;
 }
 
+#main small{
+  color: #aaa;
+}
+
 #nav{
   position: absolute;
-  background-color: #ccc;
+  background-color: #555;
+  color: #ccc;
   top: 0;
   bottom: 0;
   width: 20rem;
@@ -80,21 +85,80 @@ body{
 
 #nav .panel li:hover{
   cursor: pointer;
-  background-color: #ddd;
+  background-color: #777;
 }
 
 #nav .panel button{
   width: 100%;
 }
 
+#footer{
+  position: absolute;
+  background-color: #bbb;
+  left: 20rem;
+  bottom: 0;
+  height: 3rem;
+  right: 0;
+  padding-left: 30px;
+  margin: 0;
+}
+
+#footer input{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80%;
+  font-size: inherit;
+  border: 0px solid;
+  background-color: rgba(0,0,0,0);
+}
+
+#footer input::-webkit-input-placeholder{
+  color: #777;
+}
+
+#footer input::-moz-input-placeholder{
+  color: #777;
+}
+
+#footer input::-ms-input-placeholder{
+  color: #777;
+}
+
+#footer input:focus{
+  outline: none;
+}
+
+#footer button{
+  position: relative;
+  background-color: #555;
+  color: #ccc;
+  border: 0px solid #555;
+  font-size: inherit;
+  cursor: pointer;
+  float: right;
+  width: 6rem;
+  height: 100%;
+}
+
+#footer button:hover{
+  background-color: #eee;
+  color: #555;
+}
+
+.form-container{
+  padding-right: .5rem;
+}
+
 .panel-input{
-  box-sizing: border-box;
-  background-color: #ddd;
+  background-color: #eee;
   border: 1px solid;
   font-size: inherit;
   color: #555;
-  padding: .5rem;
+  padding: 10px;
   width: 100%;
+  margin-left: -10px;
+
 }
 
 .panel-input:focus{
@@ -107,7 +171,7 @@ body{
   font-size: inherit;
   cursor: pointer;
   padding: .7rem;
-  background-color: #ddd;
+  background-color: #ccc;
   border-style: solid;
   border-width: 1px;
   border-radius: .3rem;
@@ -118,7 +182,7 @@ body{
 }
 
 .panel-button:hover{
-  background-color: #fff;
+  background-color: #eee;
 }
 
 .panel-button:disabled{
@@ -132,7 +196,7 @@ body{
 }
 
 .panel-button.primary:hover{
-  background-color: #FFF;
+  background-color: #eee;
   color: #555;
 }
 
@@ -153,7 +217,7 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ccc;
+  background-color: #ddd;
   padding: 1rem;
   border-radius: .5rem;
 }
