@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="/styles/ui-bootstrap-csp.css">
 </head>
 <body>
-
-  <div ui-view="nav"></div>
-  <div ui-view="main"></div>
+  <div class="wrapper">
+    <div id="nav" ui-view="nav"></div>
+    <div id="main" ui-view="main"></div>
+  </div>
   <div class="modal-parent"></div>
 
   <script src="//www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -37,7 +38,9 @@
 
   <script src="/scripts/app.js"></script>
   <script src="/scripts/controllers/NavCtrl.js"></script>
+  <script src="/scripts/controllers/MainCtrl.js"></script>
   <script src="/scripts/controllers/NewRoomModalCtrl.js"></script>
+  <script src="/scripts/services/Message.js"></script>
   <script src="/scripts/services/Room.js"></script>
 </body>
 </html>

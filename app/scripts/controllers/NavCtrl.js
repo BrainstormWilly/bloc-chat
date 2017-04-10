@@ -1,6 +1,6 @@
 (function(){
 
-  function NavCtrl($document, $uibModal, Room){
+  function NavCtrl($document, $uibModal, Room, Message){
     var $ctrl = this;
     $ctrl.rooms = Room.all;
 
@@ -25,10 +25,14 @@
         console.log('dismissed');
       });
     }
+
+    $ctrl.selectRoom = function(room){
+      Message.getByRoomId(room);
+    };
   }
 
   angular
     .module('blocChat')
-    .controller('NavCtrl', ['$document', '$uibModal', 'Room', NavCtrl]);
+    .controller('NavCtrl', ['$document', '$uibModal', 'Room', 'Message', NavCtrl]);
 
 })();

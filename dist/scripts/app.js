@@ -12,6 +12,10 @@
           'nav': {
             controller: 'NavCtrl as nav',
             templateUrl: '/templates/nav.html'
+          },
+          'main': {
+            controller: "MainCtrl as main",
+            templateUrl: "/templates/main.html"
           }
         }
       });
