@@ -1,26 +1,29 @@
 (function(){
 
-  function MainCtrl($rootScope, $state, User, Room){
+  function MainCtrl($rootScope, User, Room){
     var $ctrl = this;
-
-    $ctrl.currentUser = User.getCurrentUser();
-
-    // init();
-
-    $rootScope.$on('$stateChangeSuccess', init);
-
-    function init() {
-      $ctrl.currentRoomId = $state.params.id;
+    var setUser = function(){
+      $ctrl.currentUser = User.getCurrentUser();
+    };
+    var setRoom = function() {
       $ctrl.currentRoom = Room.getCurrentRoom();
+    };
+    var signoutUser = function(){
+      User.signoutUser();
+    };
 
-      if (!$ctrl.currentRoom) {
-        $ctrl.currentRoom = Room.setCurrentRoom($ctrl.currentRoomId);
-      }
-    }
+    $ctrl.signoutUser = signoutUser;
+
+    $rootScope.$on('room.set', setRoom);
+    $rootScope.$on("user.set", setUser);
+
+    setRoom();
+    setUser();
+
   }
 
   angular
     .module('blocChat')
-    .controller('MainCtrl', ['$rootScope', '$state', 'User', 'Room', MainCtrl]);
+    .controller('MainCtrl', ['$rootScope', 'User', 'Room', MainCtrl]);
 
 })();

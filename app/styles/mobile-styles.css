@@ -1,7 +1,3 @@
-/** {
-  border: 1px solid black
-}*/
-
 body{
   box-sizing: border-box;
   font-family: 'Roboto Slab', sans-serif;
@@ -9,70 +5,27 @@ body{
   color: #555;
 }
 
-.wrapper{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.panel{
-  padding: 1rem;
-}
-
-.panel ul{
-  margin-left: 0;
-  padding-left: 0;
-}
-
-#main{
-  position: fixed;
-  background-color: #fff;
-  top: 0;
-  left: 20rem;
-  right: 0rem;
-  bottom: 3rem;
-  overflow-y: scroll;
-}
-
-#main .panel .username{
-  float: right;
-  font-size: 1rem;
-  font-family: sans-serif;
-  margin-right: 1rem;
-  padding-top: 1rem;
-  color: #777;
-}
-
-#main .panel li{
-  background-color: #eee;
-  border: 0px solid #555;
-  border-radius: 1rem;
-  list-style-type: none;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-#main .panel li .right-label{
-  float: right;
-  font-size: .7rem;
-}
-
-#main small{
-  color: #aaa;
-}
-
-#main a{
-  color: inherit;
-  text-decoration: none;
-}
-
 #nav{
   position: fixed;
   background-color: #555;
   color: #ccc;
   top: 0;
-  bottom: 0;
-  width: 20rem;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#nav div{
+  overflow: hidden;
+  transition: height 0.3s;
+}
+
+#nav h3 a.add-room{
+  color: inherit;
+  text-decoration: none;
+  padding-top: .5rem;
+  padding-right: .3rem;
+  outline: none;
 }
 
 #nav .panel li{
@@ -83,17 +36,7 @@ body{
   list-style-type: none;
   border-top-style: solid;
   border-top-width: 1px;
-}
-
-#nav h1 a{
-  display: none;
-}
-
-#nav h3 a.add-room{
-  color: inherit;
-  text-decoration: none;
-  padding-top: .5rem;
-  padding-right: .3rem;
+  text-align: left;
 }
 
 #nav .panel li:last-child{
@@ -101,7 +44,7 @@ body{
   border-bottom-width: 1px;
 }
 
-#nav .panel li.room:hover{
+#nav .panel li:hover{
   cursor: pointer;
   background-color: #777;
 }
@@ -110,14 +53,52 @@ body{
   width: 100%;
 }
 
+#main{
+  position: fixed;
+  top: 7rem;
+  left: 0;
+  right: 0;
+  bottom: 3rem;
+  overflow-y: scroll;
+}
+
+#main .panel .username{
+  float: right;
+  font-size: 1rem;
+  font-family: sans-serif;
+  margin-right: 1rem;
+  padding-top: .5rem;
+  color: #777;
+}
+
+#main .panel li{
+  background-color: #eee;
+  border: 0px solid #555;
+  border-radius: 1rem;
+  list-style-type: none;
+  padding: 1rem 1rem 2rem 1rem;
+  margin-bottom: 1rem;
+}
+
+#main .panel li .right-label{
+  display: block;
+  font-size: .7rem;
+}
+
+#main small{
+  float: right;
+  color: #aaa;
+  top: -.5rem;
+}
+
 #footer{
   position: fixed;
   background-color: #bbb;
-  left: 20rem;
+  left: 0;
   bottom: 0;
   height: 3rem;
   right: 0;
-  padding-left: 30px;
+  padding-left: 20px;
   margin: 0;
 }
 
@@ -149,51 +130,41 @@ body{
 
 #footer button{
   position: relative;
-  background-color: #555;
+  /*background-color: #555;
   color: #ccc;
   border: 0px solid #555;
   font-size: inherit;
   cursor: pointer;
-  float: right;
-  width: 6rem;
+  right: 0;
+  width: 3rem;*/
+  width: 3rem;
   height: 100%;
+  float: right;
+  background-color: #555;
+  color: #ccc;
+  border: 0px solid #555
 }
 
 #footer button:hover{
-  background-color: #eee;
-  color: #555;
-}
-
-.form-container{
-  padding-right: .5rem;
-}
-
-.panel-input{
-  background-color: #eee;
-  border: 1px solid;
-  font-size: inherit;
-  color: #555;
-  padding: 10px;
-  width: 100%;
-  margin-left: -10px;
-  margin-bottom: .5rem;
-}
-
-.panel-input::-webkit-input-placeholder{
-  color: #bbb;
-}
-
-.panel-input::-moz-input-placeholder{
-  color: #bbb;
-}
-
-.panel-input::-ms-input-placeholder{
-  color: #bbb;
-}
-
-.panel-input:focus{
   outline: none;
-  background-color: #fff;
+  /*background-color: #eee;
+  color: #555;*/
+}
+
+.wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.panel{
+  padding: 1rem;
+}
+
+.panel ul{
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .panel-button{
@@ -201,11 +172,10 @@ body{
   font-size: inherit;
   cursor: pointer;
   padding: .7rem;
-  background-color: #ccc;
+  background-color: #bbb;
   border-style: solid;
   border-width: 1px;
   border-radius: .3rem;
-  margin-right: .3rem;
 }
 
 .panel-button:focus{
@@ -229,6 +199,22 @@ body{
 .panel-button.primary:hover{
   background-color: #eee;
   color: #555;
+}
+
+.panel-input{
+  background-color: #eee;
+  border: 1px solid;
+  font-size: inherit;
+  color: #555;
+  padding: 10px;
+  width: 100%;
+  margin-left: -10px;
+
+}
+
+.panel-input:focus{
+  outline: none;
+  background-color: #fff;
 }
 
 .modal-backdrop{

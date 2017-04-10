@@ -1,10 +1,15 @@
 <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Set a Username</h3>
+    <h3 class="modal-title" id="modal-title" ng-hide="modal.new_user">Sign in to join the chat.</h3>
+    <h3 class="modal-title" id="modal-title" ng-show="modal.new_user">Sign up to join the chat.</h3>
 </div>
 <div class="modal-body" id="modal-body">
-  <p>This is your handle for sending messages</p>
-  <input class="panel-input" type="text" ng-model="modal.username" placeholder="Username">
+  <input class="panel-input" type="text" ng-model="modal.name" placeholder="Name" ng-show="modal.new_user">
+  <input class="panel-input" type="text" ng-model="modal.email" placeholder="Email">
+  <input class="panel-input" type="password" ng-model="modal.password" placeholder="Password">
 </div>
 <div class="modal-footer">
-    <button class="panel-button primary" type="button" ng-click="modal.ok()" ng-disabled="modal.username.length==0">OK</button>
+  <button class="panel-button primary" type="button" ng-click="modal.signin()" ng-disabled="modal.email.length==0 || modal.password.lenght==0" ng-hide="modal.new_user">Sign In</button>
+  <button class="panel-button" type="button" ng-click="modal.new_user=true" ng-hide="modal.new_user">New User</button>
+  <button class="panel-button primary" type="button" ng-click="modal.signup()" ng-show="modal.new_user">Sign Up</button>
+  <button class="panel-button" type="button" ng-click="modal.new_user=false" ng-show="modal.new_user">Cancel</button>
 </div>

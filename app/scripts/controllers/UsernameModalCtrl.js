@@ -1,18 +1,30 @@
 (function(){
 
-  function UsernameModalCtrl($uibModalInstance){
+  function UsernameModalCtrl($rootScope, $uibModalInstance, User){
     var $ctrl = this;
-    var username_submit = function(){
-      $uibModalInstance.close($ctrl.username);
+    var signin = function(){
+      User.signinUser($ctrl.email, $ctrl.password);
+    };
+    var signup = function(){
+      User.signupUser($ctrl.name, $ctrl.email, $ctrl.password);
+    };
+    var onSignIn = function(){
+      $uibModalInstance.close();
     };
 
-    $ctrl.username = '';
-    $ctrl.disabled = $ctrl.username=='' ? "disabled" : "false";
-    $ctrl.ok = username_submit;
+    $ctrl.name = '';
+    $ctrl.email = '';
+    $ctrl.password = '';
+    $ctrl.new_user = false;
+    $ctrl.signin = signin;
+    $ctrl.signup = signup;
+
+    $rootScope.$on("user.set", onSignIn);
+
   }
 
   angular
     .module('blocChat')
-    .controller('UsernameModalCtrl', ['$uibModalInstance', UsernameModalCtrl]);
+    .controller('UsernameModalCtrl', ['$rootScope', '$uibModalInstance', 'User', UsernameModalCtrl]);
 
 })();
