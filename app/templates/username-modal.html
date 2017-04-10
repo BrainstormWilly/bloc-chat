@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Set a Username</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <p>This is your handle for sending messages</p>
+  <input class="panel-input" type="text" ng-model="modal.username" placeholder="Username">
+</div>
+<div class="modal-footer">
+    <button class="panel-button primary" type="button" ng-click="modal.ok()" ng-disabled="modal.username.length==0">OK</button>
+</div>

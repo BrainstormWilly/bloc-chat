@@ -1,8 +1,6 @@
 <div class="panel">
 
-  <h2>{{main.message.title}}</h2>
-  <ul>
-    <li ng-repeat="message in main.message.all">{{message.content}}<span class="right-label">{{message.sentAt}}</span></li>
-  </ul>
+  <h2>{{main.currentRoom.$value}}<span class="username">{{main.currentUser}}</span></h2>
 
+  <message-list ng-if="main.currentRoomId" room-id="main.currentRoomId"><message-list>
 </div>

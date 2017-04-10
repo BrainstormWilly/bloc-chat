@@ -2,7 +2,7 @@
 <div class="panel">
   <h1>Bloc Chat</h1>
   <ul>
-    <li ng-repeat="room in nav.rooms" ng-click="nav.selectRoom(room)">{{room.$value}}</li>
+    <li ng-repeat="room in nav.rooms" id="{{room.$id}}" ng-click="nav.selectRoom(room)">{{room.$value}}</li>
   </ul>
   <button type="button" class="panel-button" ng-click="nav.initAddRoom()">Add Room</button>
 </div>

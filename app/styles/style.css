@@ -29,6 +29,19 @@ body{
   right: 0;
 }
 
+#main .panel{
+  max-width: 60rem;
+}
+
+#main .panel .username{
+  float: right;
+  font-size: 1rem;
+  font-family: sans-serif;
+  margin-right: 1rem;
+  padding-top: 1rem;
+  color: #777;
+}
+
 #main .panel li{
   background-color: #eee;
   border: 0px solid #555;
@@ -36,7 +49,6 @@ body{
   list-style-type: none;
   padding: 1rem;
   margin-bottom: 1rem;
-  width: 80%;
 }
 
 #main .panel li .right-label{
@@ -107,6 +119,11 @@ body{
 
 .panel-button:hover{
   background-color: #fff;
+}
+
+.panel-button:disabled{
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .panel-button.primary{
