@@ -1,6 +1,5 @@
 <div class="panel">
-
-  <h2>{{main.currentRoom.$value}}<span class="username">{{main.currentUser.displayName}} <a class="fa fa-sign-out" href ng-click="main.signoutUser()"></a></span></h2>
+  <h2>{{main.currentRoom.$value}}<span class="username">{{main.currentUser.name}} <a class="fa fa-sign-out" href ng-click="main.signoutUser()"></a></span></h2>
   <hr/>
   <div>
     <message-list ng-if="main.currentRoom" room-id="main.currentRoom.$id"><message-list>

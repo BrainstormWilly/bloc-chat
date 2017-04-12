@@ -9,7 +9,7 @@
     </ul>
     <h3>Online Users</h3>
     <ul>
-      <li ng-if="user.online" ng-repeat="user in nav.users">{{user.name}} - {{user.room}}</li>
+      <li ng-if="user.online && user.email!=nav.currentUser.email" ng-repeat="user in nav.users">{{user.name}} - {{nav.getRoomValue(user.room_id)}}</li>
     </ul>
   </div>
 </div>

@@ -72,15 +72,21 @@
           }
         },
         resolve: {
-          "rooms": ["Room", function(Room){
-            return Room.getRooms();
-          }],
-          "users": ["User", function(User){
-            return User.getUsers();
-          }],
-          "currentAuth": ["User", function(User){
+          auth: function(User){
             return User.checkAuthorization();
-          }]
+          },
+          data: function(User, Room) {
+            return Room.getRooms()
+                    .then(function(rooms) {
+                      return User.getUsers()
+                              .then(function(users){
+                                return {
+                                  rooms: rooms,
+                                  users: users
+                                }
+                              });
+                    });
+          }
         }
       })
       .state('home.room', {

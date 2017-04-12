@@ -17,8 +17,8 @@
     $rootScope.$on('room.set', setRoom);
     $rootScope.$on("user.set", setUser);
 
-    setRoom();
     setUser();
+    setRoom();
 
   }
 

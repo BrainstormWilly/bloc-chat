@@ -1,15 +1,15 @@
 (function() {
 
-  function User($rootScope, $state, $firebaseAuth, $firebaseArray, $firebaseObject) {
+  function User($rootScope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
     var service = {};
     var currentUser = null;
     var auth = $firebaseAuth();
     var ref = firebase.database().ref().child("users");
 
-    var changeUserRoom = function(room_value){
+    var changeUserRoom = function(room_id){
       var onChangeUserRoom = function(snapshot){
-        snapshot.ref.child('room').set(room_value);
+        snapshot.ref.child('room_id').set(room_id);
       };
       ref.orderByChild("email").equalTo(currentUser.email).on("child_added", onChangeUserRoom);
     };
@@ -26,20 +26,10 @@
     var setCurrentUser = function (user) {
       currentUser = user;
       $rootScope.$broadcast("user.set");
-      if( user===null ){
-        $state.go("home", {}, {reload: true});
-      }
     };
 
     var signinUser = function(email, password){
-      auth.$signInWithEmailAndPassword(email, password)
-        .then(function(user){
-          ref.orderByChild("email").equalTo(email).on("child_added", toggleUserOnline);
-          $state.go("home");
-        })
-        .catch(function(error){
-          console.error(error);
-        });
+      auth.$signInWithEmailAndPassword(email, password);
     };
 
     var signupUser = function(name, email, password){
@@ -48,13 +38,15 @@
           user.updateProfile({
             displayName: name
           }).then(function(){
-            service.all.$add({
+            var user = {
               name: name,
               email: email,
               online: true,
-              role: 'user'
-            });
-            $state.go("home");
+              role: 'user',
+              room_id: null
+            };
+            service.all.$add(user);
+            setCurrentUser(user);
           })
         }).catch(function(error){
           console.error(error);
@@ -62,7 +54,6 @@
     };
 
     var signoutUser = function(){
-      ref.orderByChild("email").equalTo(currentUser.email).on("child_added", toggleUserOnline);
       auth.$signOut();
     };
 
@@ -70,17 +61,28 @@
       return auth.$requireSignIn();
     };
 
-    var toggleUserOnline = function(snapshot){
-      var user = snapshot.val();
-      if( user.online ){
-        snapshot.ref.child('online').set(false);
-      }else{
-        snapshot.ref.child('online').set(true);
+    var onAuthStateChanged = function(user){
+      if( user ){
+        ref.orderByChild("email").equalTo(user.email).on("child_added", setUserOnline);
+      }else if (currentUser) {
+        ref.orderByChild("email").equalTo(currentUser.email).on("child_added", setUserOffline);
       }
     };
 
+    var setUserOnline = function(snapshot){
+      var user = snapshot.val();
+      snapshot.ref.child('online').set(true);
+      setCurrentUser(user);
+    };
 
-    auth.$onAuthStateChanged(setCurrentUser);
+    var setUserOffline = function(snapshot){
+      console.log("setUserOffline");
+      snapshot.ref.child('online').set(false);
+      setCurrentUser(null);
+    };
+
+
+    auth.$onAuthStateChanged(onAuthStateChanged);
 
     service.changeUserRoom = changeUserRoom;
     service.checkAuthorization = checkAuthorization;
@@ -97,5 +99,5 @@
 
   angular
     .module('blocChat')
-    .factory('User', ['$rootScope', '$state', '$firebaseAuth', '$firebaseArray', '$firebaseObject', User]);
+    .factory('User', ['$rootScope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', User]);
 })();

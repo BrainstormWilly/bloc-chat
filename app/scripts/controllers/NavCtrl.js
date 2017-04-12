@@ -1,6 +1,6 @@
 (function(){
 
-  function NavCtrl($document, $uibModal, $state, Room, User){
+  function NavCtrl($rootScope, $document, $uibModal, $state, Room, User, data){
     var $ctrl = this;
 
     var initAddRoom = function(){
@@ -26,22 +26,44 @@
     };
 
     var selectRoom = function(room){
-      Room.setCurrentRoom(room.$id);
-      User.changeUserRoom( room.$value );
+      Room.setCurrentRoom( room.$id );
+      User.changeUserRoom( room.$id );
       $state.go('home.room', {id: room.$id});
       $ctrl.navOff = true;
     };
 
+    var getRoomValue = function(room_id){
+      return Room.getRoomById(room_id).$value;
+    };
+
+    var onSetUser = function(){
+      $ctrl.currentUser  = User.getCurrentUser();
+      if( !$ctrl.currentUser ){
+        $state.go("home", {}, {reload: true});
+      }
+    };
+
+    // var onStateChanged = function(room_id){
+    //   Room.setCurrentRoom( room_id );
+    // };
+
     $ctrl.users = User.all;
     $ctrl.rooms = Room.all;
     $ctrl.navOff = true;
+    $ctrl.currentUser = User.getCurrentUser();
+    $ctrl.currentRoomValue = null;
     $ctrl.initAddRoom = initAddRoom;
     $ctrl.selectRoom = selectRoom;
+    $ctrl.getRoomValue = getRoomValue;
+
+    // $rootScope.$on('$stateChangeSuccess', onStateChanged($state.params.id));
+
+    $rootScope.$on("user.set", onSetUser);
 
   }
 
   angular
     .module('blocChat')
-    .controller('NavCtrl', ['$document', '$uibModal', '$state', 'Room', 'User', NavCtrl]);
+    .controller('NavCtrl', ['$rootScope', '$document', '$uibModal', '$state', 'Room', 'User', 'data', NavCtrl]);
 
 })();
